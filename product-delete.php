@@ -12,5 +12,5 @@ $sql = "DELETE FROM products WHERE id = $id ";
 $query = mysqli_query($conn,$sql);
 
 if($query){
-      header("Location:index.php");
+      header("Location:product-create.php");
 }

@@ -2,12 +2,7 @@
 
 echo "<pre>";
 
-$conn = mysqli_connect("localhost","pzo","pzo124","wad_shop");
-
-if (!$conn) {
-      die("Connection failed: " . mysqli_connect_error());
-    }
- echo "Connected successfully";
+require_once("./productdb_con.php");
 
 $product = $_POST['product'];
 $price = $_POST['price'];
@@ -19,5 +14,5 @@ $sql = "INSERT INTO products(name,price,stock) VALUES ('$product',$price,$stock)
 $query = mysqli_query($conn,$sql);
 
 if($query){
-      header("Location:index.php");
+      header("Location:product-create.php");
 }
