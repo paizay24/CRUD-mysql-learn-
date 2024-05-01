@@ -1,3 +1,6 @@
+<?php 
+ require_once("./productdb_con.php");
+?>
 <?php require_once('./template/slidebar.php') ?>
 <?php require_once('./template/header.php') ?>
 
@@ -10,7 +13,7 @@ $sql = "SELECT * FROM products WHERE id = $id";
 
 $query = mysqli_query($conn, $sql);
 
-$row = mysqli_fetch_assoc($query); ?>
+$row = mysqli_fetch_assoc($query) ?>
 
 <section class=" max-w-[1000px] mx-auto bg-gray-100">
       <ol class="flex items-center whitespace-nowrap">

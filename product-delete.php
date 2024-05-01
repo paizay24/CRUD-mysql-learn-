@@ -1,11 +1,7 @@
 <?php 
 
-$conn = mysqli_connect("localhost", "pzo", "pzo124", "wad_shop");
 
-if (!$conn) {
-      die("Connection failed: " . mysqli_connect_error());
-}
-
+ require_once("./productdb_con.php");
 $id = $_GET['row_id'];
 
 $sql = "DELETE FROM products WHERE id = $id ";

@@ -1,6 +1,4 @@
-<?php 
- require_once("./productdb_con.php");
-?>
+
 
 
 <!DOCTYPE html>
