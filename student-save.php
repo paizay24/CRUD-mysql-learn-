@@ -8,15 +8,17 @@ echo "<pre>";
 
 require_once("./schooldb_conn.php");
 
-$title = $_POST['title'];
-$short = $_POST['short'];
-$fee = $_POST['fee'];
+
+
+$studentName = $_POST['studentName'];
+$birthday = $_POST['birthday'];
+$genderId = $_POST['genderId'];
 
 //sql statement
-$sql = "INSERT INTO courses(title,short,fee) VALUES ('$title','$short',$fee) ";
+$sql = "INSERT INTO students(name,birthday,gender_id) VALUES ('$studentName','$birthday','$genderId') ";
 
 $query = mysqli_query($conn,$sql);
 
 if($query){
-      header("Location:course-create.php");
+      header("Location:student-list.php");
 }
