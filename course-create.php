@@ -1,5 +1,5 @@
-<?php 
- require_once("./schooldb_conn.php");
+<?php
+require_once("./schooldb_conn.php");
 ?>
 <?php require_once('./template/slidebar.php') ?>
 <?php require_once('./template/header.php') ?>
@@ -11,7 +11,7 @@
       <ol class="flex items-center whitespace-nowrap">
             <li class="inline-flex items-center">
                   <a class="flex items-center text-sm text-gray-500 hover:text-blue-600 focus:outline-none focus:text-blue-600 dark:focus:text-blue-500" href="#">
-                      Manage Courses
+                        Manage Courses
                   </a>
 
             </li>
@@ -54,6 +54,8 @@
                                                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">title</th>
                                                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">short</th>
                                                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">fee</th>
+                                                <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">batch count </th>
+                                                <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">student count </th>
 
                                                 <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Action</th>
                                           </tr>
@@ -61,7 +63,10 @@
                                     <tbody>
                                           <?php
 
-                                          $sql = "SELECT * from courses";
+                                          $sql = "SELECT *, (SELECT count(id) FROM batches WHERE courses.id = batches.course_id) AS batch_count ,
+                                                (SELECT count(id) FROM enrollments WHERE enrollments.batch_id IN (SELECT id FROM batches WHERE courses.id=batches.course_id) ) AS student_count 
+
+                                           from courses";
                                           $result = mysqli_query($conn, $sql);
                                           ?>
                                           <?php while ($row = mysqli_fetch_assoc($result)) : ?>
@@ -72,6 +77,9 @@
                                                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"><?= $row['short'] ?>
                                                       </td>
                                                       <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"><?= $row['fee'] ?></td>
+                                                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"><?= $row['batch_count'] ?></td>
+                                                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200"><?= $row['student_count'] ?></td>
+
                                                       <td class="px-6 py-4 whitespace-nowrap text-sm text-end text-gray-800 dark:text-neutral-200">
                                                             <div class="inline-flex rounded-lg shadow-sm">
 

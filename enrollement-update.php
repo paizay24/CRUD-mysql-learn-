@@ -1,19 +1,13 @@
 <?php 
+require_once('./schooldb_conn.php');
 
-echo "<pre>";
-
-
-
-
-
-require_once("./schooldb_conn.php");
 
 $title = $_POST['title'];
 $short = $_POST['short'];
 $fee = $_POST['fee'];
+$id = $_POST['id'];
 
-//sql statement
-$sql = "INSERT INTO courses(title,short,fee) VALUES ('$title','$short',$fee) ";
+$sql = "UPDATE courses SET title='$title', short='$short',fee=$fee WHERE id = $id";
 
 $query = mysqli_query($conn,$sql);
 
